@@ -78,6 +78,8 @@ local syntax = { -- have fun! :zrowning:
         return "print("
     end,
 
+
+    -- default luau syntax and stuff
     ["join"] = "..",
 
     ["list"] = "{}",
@@ -215,18 +217,6 @@ local syntax = { -- have fun! :zrowning:
         return "for i"..tostring(line).." = 1, "
     end,
 
-    ["create new vector3"] = function()
-        args[#args+1] = {
-            ["Start"] = indent,
-            ["EndSyntax"] = ")",
-            ["Count"] = 3,
-            ["Block"] = blocks[line][indent][depth],
-            ["Index"] = depth,
-            ["Sep"] = ",",
-        }
-        return "Vector3.new("
-    end,
-
     ["set varaible to value"] = function()
         tempCode = code
         code = ""
@@ -244,7 +234,217 @@ local syntax = { -- have fun! :zrowning:
         }
         return ""
     end,
-            
+
+
+    
+    -- basic type creation
+    ["create new Vector3"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 3,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = ",",
+        }
+        return "Vector3.new("
+    end,
+
+    ["create new CFrame"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 2,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = ",",
+        }
+        return "CFrame.new("
+    end,
+
+    ["create new Instance"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "Instance.new("
+    end,
+
+
+
+    -- most base luau libraries
+    ["absolute"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.abs("
+    end,
+
+    
+    ["sine"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.sin(math.deg("
+    end,
+
+    ["cosine"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.cos(math.deg("
+    end,
+
+    ["tangent"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.tan(math.deg("
+    end,
+
+    ["arcsine"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.deg(math.asin("
+    end,
+
+    ["arccosine"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.deg(math.acos("
+    end,
+
+    ["arctangent"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = "))",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.deg(math.atan("
+    end,
+
+     ["round up"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.ceil("
+    end,
+
+    ["round down"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.floor("
+    end,
+
+    ["round off"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.round("
+    end,
+
+    ["maximum out of"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.max("
+    end,
+
+    ["minimum out of"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.min("
+    end,
+
+    ["limit number in number range"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 3,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = ",",
+        }
+        return "math.clamp("
+    end,
+
+    ["sign of number"] = function()
+        args[#args+1] = {
+            ["Start"] = indent,
+            ["EndSyntax"] = ")",
+            ["Count"] = 1,
+            ["Block"] = blocks[line][indent][depth],
+            ["Index"] = depth,
+            ["Sep"] = "",
+        }
+        return "math.sign("
+    end,
         
 }
 
