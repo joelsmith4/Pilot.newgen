@@ -196,6 +196,7 @@ local syntax = { -- have fun! :zrowning:
             ["Sep"] = "evilseperator",
             ["EndAct"] = function()
                 local s = string.split(code, "evilseperator")
+                s[1], s[2] = string.split(string.split(s[1], "[")[2], "]")[1], string.split(string.split(s[2], "[")[2], "]")[1]
                 code = "for i"..tostring(line)..",v"..tostring(line).." in pairs("..s[3]..") do vars["..s[1].."], vars["..s[2].."] = i"..tostring(line)..",v"..tostring(line)
                 vars[JSONDecode(s[1])], vars[JSONDecode(s[2])] = 0, 0
                 code = tempCode..code
